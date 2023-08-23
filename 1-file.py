@@ -1,31 +1,21 @@
-def get_string(string: str, times: int, sep: str='') -> str:
-    return sep.join([string] * times)
+from dataclasses import dataclass
 
-# Ко встроенным типам данных относятся:
 
-#     int
-#     float
-#     str
-#     bytes
-#     list
-#     dict
-#     set
-#     frozenset
-#     ...
+@dataclass
+class DatabaseConfig:
+    db_host: str       # URL-адрес базы данных
+    db_user: str       # Username пользователя базы данных
+    db_password: str   # Пароль к базе данных
+    database: str      # Название базы данных
 
-def some_function(number: int | float) -> None:
-    pass
 
-def another_some_function(number: int | float | complex = 0) -> None:
-    pass
+@dataclass
+class TgBot:
+    token: str             # Токен для доступа к телеграм-боту
+    admin_ids: list[int]   # Список id администраторов бота
 
-lst_1: list[int]                # Все элементы списка lst_1 типа int
-tpl_2: tuple[bool]              # Все элементы кортежа tpl_2 типа bool
-tpl_3: tuple[int, bool, float]  # Кортеж tpl_3 состоит из трех элементов
-                                # Первый типа int, второй типа bool, а третий типа float
-set_4: set[int | float]         # Элементы множества set_4 либо int, либо float типов
 
-def get_tuple(lst: list[float | bool]) -> tuple[int]:
-    return tuple(int(num) for num in lst)
-
-get_tuple([True,False])
+@dataclass
+class Config:
+    tg_bot: TgBot
+    db: DatabaseConfig
