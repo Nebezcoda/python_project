@@ -1,3 +1,4 @@
-print('Мой первый файл в GitHub репозиторий')
+def say_something(number: int, word: str) -> str:
 
-print('Изменения')
+    word = word.capitalize()
+    return word * number
