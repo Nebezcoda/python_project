@@ -61,6 +61,7 @@ async def send_document_echo(message: Message):
 # кроме команд "/start" и "/help"
 async def send_echo(message: Message):
     await message.reply(text=message.text)
+    await message.answer(text=message.text)
 
 
 # Регистрируем хэндлеры
