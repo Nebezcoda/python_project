@@ -1,4 +1,4 @@
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command
 from aiogram.types import Message
 
@@ -22,6 +22,24 @@ async def process_start_command(message: Message):
 async def process_help_command(message: Message):
     await message.answer('Напиши мне что-нибудь и в ответ '
                          'я пришлю тебе твое сообщение')
+
+
+# Навешиваем декоратор без фильтров, чтобы ловить большинство типов апдейтов
+@dp.message()
+async def process_any_update(message: Message):
+    # Выводим апдейт в терминал
+    print(message)
+    # Отправляем сообщение в чат, откуда пришел апдейт
+    await message.answer(text='Вы что-то прислали')
+
+
+# Навешиваем декоратор с указанием в качестве фильтра типа контента
+@dp.message(F.voice)
+async def process_sent_voice(message: Message):
+    # Выводим апдейт в терминал
+    print(message)
+    # Отправляем сообщение в чат, откуда пришло голосовое
+    await message.answer(text='Вы прислали голосовое сообщение!')
 
 
 # Этот хэндлер будет срабатывать на любые ваши сообщения,
