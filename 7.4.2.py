@@ -21,8 +21,5 @@ True
 
 import re
 
-anonymous_filter = lambda string: len(re.findall('[а-яА-Я]', string, re.IGNORECASE)) >= 23
-
-#anonimous_filter = lambda s: sum(1 for c in s if c.lower() in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя') >= 23
-
+anonymous_filter = lambda string: len(re.findall('[аЯ]', string, re.IGNORECASE)) >= 23
 print(anonymous_filter('Я - последняя буква в алфавите!'))
