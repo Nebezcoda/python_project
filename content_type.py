@@ -21,7 +21,7 @@ async def process_send_photo(message: Message):
 # Этот хэндлер будет срабатывать на тип контента "photo"
 @dp.message(F.content_type == 'photo')
 async def process_send_photo(message: Message):
-    await message.answer(text='Вы прислали фото')
+    await message.answer(text='Вы прислали фото'
 
 # Равнозначный хэндлер, обрабатывающий апдейт с типом контента "photo", в упрощенной записи:
 
