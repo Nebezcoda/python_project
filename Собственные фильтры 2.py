@@ -11,7 +11,7 @@ bot: Bot = Bot(token=API_TOKEN)
 dp: Dispatcher = Dispatcher()
 
 # Список с ID администраторов бота. !!!Замените на ваш!!!
-admin_ids: list[int] = [927862925]
+admin_ids: list[int] = [12345]
 
 
 # Собственный фильтр, проверяющий юзера на админа
