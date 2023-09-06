@@ -1,4 +1,4 @@
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.filters import BaseFilter
 from aiogram.types import Message
 
@@ -50,3 +50,49 @@ async def process_if_not_numbers(message: Message):
 
 if __name__ == '__main__':
     dp.run_polling(bot)
+
+
+
+
+'''
+from typing import Any
+
+# ...
+
+# Какой-то фильтр
+class MyFilter(BaseFilter):
+    async def __call__(self, message: Message) -> bool | dict[str, Any]:
+        # Какой-то код
+        # ...
+        # Какой-то код
+        return {'key_1': 'value_1',
+                'key_2': 'value_2',
+                'key_3': 'value_3'}
+
+# ...
+
+# Какой-то хэндлер
+@dp.message(MyFilter())
+async def some_handler(message: Message,
+                       key_1: str,
+                       key_2: str,
+                       key_3: str)
+    await # Какой-то код
+
+# ...
+'''
+
+
+'''
+from aiogram.types import PhotoSize
+
+# ...
+
+@dp.message(F.photo[0].as_('photo_min'))
+async def process_photo_send(message: Message, photo_min: PhotoSize):
+    print(photo_min)
+
+# ...
+
+например, к ID - photo_min.file_id, к ширине photo_min.width
+'''
