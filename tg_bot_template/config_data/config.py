@@ -22,10 +22,10 @@ class Config:
     db: DatabaseConfig
 
 
-def load_config(path: str | None) -> Config:
+def load_config(path: str | None = None) -> Config:
 
     env: Env = Env()
-    env.read_env(".env")
+    env.read_env(path)
 
     return Config(
         tg_bot=TgBot(
