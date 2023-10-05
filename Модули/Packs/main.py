@@ -31,9 +31,57 @@
 
 
 
-print('Это основной файл main.py, его имя в процессе выполнения программы:', __name__)
+# print('Это основной файл main.py, его имя в процессе выполнения программы:', __name__)
 
 
-from pack_1.file_11 import result
+# from pack_1.file_11 import result
 
-print('result =', result)
+# print('result =', result)
+
+
+# print('Это основной файл main.py, его имя в процессе выполнения программы:', __name__)
+
+
+# import pack_1
+# import pack_2
+# from pack_2 import pack_21
+
+
+# print(dir())
+# print(dir(pack_1))
+# print(dir(pack_2))
+# print(dir(pack_21))
+
+
+# print('Это основной файл main.py, его имя в процессе выполнения программы:', __name__)
+
+
+# import pack_2
+
+
+# print(dir())
+# print(dir(pack_2))
+
+
+
+# print('Это основной файл main.py, его имя в процессе выполнения программы:', __name__)
+
+
+# import pack_1
+
+
+# print(dir())
+# print(dir(pack_1))
+
+
+# from pack_1.file_11 import func_1
+# from pack_1.file_12 import a
+
+
+# print(func_1(a))
+
+
+from .pack_1.file_11 import func_1
+
+
+print(func_1(3))
