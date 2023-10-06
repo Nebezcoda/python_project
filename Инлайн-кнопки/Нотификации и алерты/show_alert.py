@@ -1,8 +1,7 @@
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, F
 from aiogram.filters import CommandStart
-from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-from aiogram import F
-from aiogram.types import CallbackQuery
+from aiogram.types import (CallbackQuery, InlineKeyboardButton,
+                           InlineKeyboardMarkup, Message)
 
 # Вместо BOT TOKEN HERE нужно вставить токен вашего бота,
 # полученный у @BotFather
@@ -26,8 +25,18 @@ big_button_2 = InlineKeyboardButton(
 # Создаем объект инлайн-клавиатуры
 keyboard = InlineKeyboardMarkup(
     inline_keyboard=[[big_button_1],
-                     [big_button_2]]
-)
+                     [big_button_2]])
+
+
+# Этот хэндлер будет срабатывать на команду "/start"
+# и отправлять в чат клавиатуру с инлайн-кнопками
+@dp.message(CommandStart())
+async def process_start_command(message: Message):
+    await message.answer(
+        text='Это инлайн-кнопки. Нажми на любую!',
+        reply_markup=keyboard
+    )
+
 
 # Этот хэндлер будет срабатывать на апдейт типа CallbackQuery
 # с data 'big_button_1_pressed'
@@ -36,9 +45,11 @@ async def process_button_1_press(callback: CallbackQuery):
     if callback.message.text != 'Была нажата БОЛЬШАЯ КНОПКА 1':
         await callback.message.edit_text(
             text='Была нажата БОЛЬШАЯ КНОПКА 1',
-            reply_markup=callback.message.reply_markup
-        )
-    await callback.answer()
+            reply_markup=callback.message.reply_markup)
+    await callback.answer(
+        text='Ура! Нажата кнопка 1',
+        show_alert=True
+    )
 
 
 # Этот хэндлер будет срабатывать на апдейт типа CallbackQuery
@@ -50,17 +61,7 @@ async def process_button_2_press(callback: CallbackQuery):
             text='Была нажата БОЛЬШАЯ КНОПКА 2',
             reply_markup=callback.message.reply_markup
         )
-    await callback.answer()
-
-
-# Этот хэндлер будет срабатывать на команду "/start"
-# и отправлять в чат клавиатуру с инлайн-кнопками
-@dp.message(CommandStart())
-async def process_start_command(message: Message):
-    await message.answer(
-        text='Это инлайн-кнопки. Нажми на любую!',
-        reply_markup=keyboard
-)
+    await callback.answer(text='Ура! Нажата кнопка 2')
 
 
 if __name__ == '__main__':
